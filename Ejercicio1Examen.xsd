@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="libro">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="titulo" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="autor" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nombre" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="email" type="xs:email" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="idioma" minOccurs="0" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="español"/>
+									<xs:enumeration value="portuges"/>
+									<xs:enumeration value="ingles"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="id" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:integer">
+								<xs:minInteraction value="1"/>
+								<xs:maxInteraction value="unbounded"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fecha" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="descripcion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="contenido" minOccurs="1" maxOccurs="5">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="p" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="imagen" minOccurs="0" maxOccurs="unbounded">
+							<xs:simpleType>
+								<xs:attribute name="src" type="xs:src" use="required"/>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="contacto" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="nombre" type="xs:string" minOccurs="1" maxOccurs="1">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:pattern value="[A-Z]{30}"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="email" type="xs:email" minOccurs="1" maxOccurs="1"/>
+								</xs:sequence>
+								<xs:attribute name="tipo" type="xs:string" use="optional"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+</xs:schema>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD -->
+<!DOCTYPE hospital [
+<!ENTITY HC "Hospital Central">
+<!ELEMENT hospital (departamentos, pacientes, citas)>
+<!ATTLIST hospital 
+	nombre CDATA #REQUIRED
+	direccion CDATA #REQUIRED
+>
+<!ELEMENT departamentos (departamento)+>
+<!ELEMENT departamento EMPTY>
+<!ATTLIST departamento 
+	id ID #REQUIRED
+	nombre CDATA #REQUIRED
+	especialidad CDATA #REQUIRED
+>
+<!ELEMENT pacientes (paciente)+>
+<!ELEMENT paciente EMPTY>
+<!ATTLIST paciente 
+	id ID #REQUIRED
+	nombre CDATA #REQUIRED
+	fecha_nacimiento CDATA #REQUIRED
+	sexo ( masculino | femenino ) #REQUIRED
+	telefono CDATA #REQUIRED
+	seguro ( publico | privado ) #REQUIRED
+>
+<!ELEMENT citas (cita)+>
+<!ELEMENT cita EMPTY>
+<!ATTLIST cinta 
+	id ID #REQUIRED
+	fecha CDATA #REQUIRED
+	hora CDATA #REQUIRED
+	paciente CDATA #REQUIRED
+	doctor CDATA #REQUIRED
+	departamento CDATA #REQUIRED
+>
+]>
+
+<!-- He puesto nombre="&HC;" para que no de error -->
+<hospital nombre="&HC;" direccion="Calle Mayor, 12">
+	<departamentos>
+		<departamento id="1" nombre="Cardiología" especialidad="Enfermedades del corazón"/>
+		<departamento id="2" nombre="Traumatología" especialidad="Lesiones óseas"/>
+	</departamentos>
+	<pacientes>
+		<paciente id="1" nombre="Juan Pérez" fecha_nacimiento="1980-01-01" sexo="masculino" telefono="123456789" seguro="publico"/>
+		<paciente id="2" nombre="Ana López" fecha_nacimiento="1985-02-02" sexo="femenino" telefono="987654321" seguro="privado"/>
+	</pacientes>
+	<citas>
+		<cita id="1" fecha="2023-11-14" hora="10:00" paciente="Juan Pérez" doctor="Dr.García" departamento="Cardiología"/>
+		<cita id="2" fecha="2023-11-15" hora="15:00" paciente="Ana López" doctor="Dra.Martínez" departamento="Traumatología"/>
+	</citas>
+</hospital>

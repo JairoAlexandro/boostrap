@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="agenda">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="citas" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="cita" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="fecha" minOccurs="1" maxOccurs="1">
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:pattern value="[0-unbounded]{1}[1-12]{1}[1-31]{1}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="hora" minOccurs="1" maxOccurs="1">
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:pattern value="[0-23]{1}[0-59]{1}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="titulo" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="descripcion" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="contacto" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:simpleType>
+												<xs:attribute name="id" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:integer">
+															<xs:minInteraction value="1"/>
+															<xs:maxInteraction value="unbounded"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="id" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:integer">
+												<xs:minInteraction value="1"/>
+												<xs:maxInteraction value="unbounded"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="contactos" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="contacto" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="nombre" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="email" type="xs:email" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="telefono" minOccurs="1" maxOccurs="1">
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:pattern value="[0-9]{9}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="id" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:integer">
+												<xs:minInteraction value="1"/>
+												<xs:maxInteraction value="unbounded"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="notas" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nota" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:choice>
+										<xs:group name="notaSimple"/>
+										<xs:group name="notaPlanificacion"/>
+									</xs:choice>
+									<xs:attribute name="id" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:integer">
+												<xs:minInteraction value="1"/>
+												<xs:maxInteraction value="unbounded"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="notaSimple">
+		<xs:sequence>
+			<xs:element name="titulo" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="texto" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="notaPlanificacion">
+		<xs:sequence>
+			<xs:element name="titulo" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="texto" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fecha" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="lugar" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

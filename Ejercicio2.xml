@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD -->
+<!DOCTYPE agenda [
+<!ENTITY % PC "(#PCDATA)">
+<!ELEMENT agenda (citas, contactos, notas)>
+	<!ELEMENT citas (cita)+>
+		<!ELEMENT cita (fecha, hora, titulo, descripcion, contacto?)>
+		<!ATTLIST cita id ID #REQUIRED>
+			<!ELEMENT fecha %PC;>
+			<!ELEMENT hora %PC;>
+			<!ELEMENT titulo %PC;>
+			<!ELEMENT descripcion %PC;>
+			<!ELEMENT contacto (#PCDATA)>
+			<!ATTLIST contacto id ID #REQUIRED>
+	<!ELEMENT contactos (contacto)+>
+		<!ELEMENT contacto (nombre, email, telefono)>
+		<!ATTLIST contacto id ID #REQUIRED>
+			<!ELEMENT nombre (#PCDATA)>
+			<!ELEMENT email (#PCDATA)>
+			<!ELEMENT telefono (#PCDATA)>
+	<!ELEMENT notas (nota)+>
+		<!ELEMENT nota (titulo, texto)>
+		<!ATTLIST nota id ID #REQUIRED>
+			<!ELEMENT titulo (#PCDATA)>
+			<!ELEMENT texto (#PCDATA)>
+]>
+
+<agenda>
+	<citas>
+		<cita id="1">
+			<fecha>2024-02-20</fecha>
+			<hora>10:00</hora>
+			<titulo>Reunión con el cliente</titulo>
+			<descripcion>Reunión para discutir el nuevo proyecto.</descripcion>
+			<contacto id="1">Juan Pérez</contacto>
+		</cita>
+		<cita id="2">
+			<fecha>2024-02-22</fecha>
+			<hora>15:00</hora>
+			<titulo>Cita médica</titulo>
+			<descripcion>Revisión médica anual.</descripcion>
+		</cita>
+	</citas>
+	<contactos>
+		<contacto id="1">
+			<nombre>Juan Pérez</nombre>
+			<email>juan.perez@ejemplo.com</email>
+			<telefono>123456789</telefono>
+		</contacto>
+		<contacto id="2">
+			<nombre>Ana López</nombre>
+			<email>ana.lopez@ejemplo.com</email>
+			<teléfono/>
+		</contacto>
+	</contactos>
+	<notas>
+		<nota id="1">
+			<titulo>Lista de tareas</titulo>
+			<texto>
+			- Comprar leche
+			- Hacer la colada
+			- Llamar al banco
+			</texto>
+		</nota>
+		<nota id="2">
+			<titulo>Ideas para el nuevo proyecto</titulo>
+			<texto>
+			- Desarrollar una nueva aplicación móvil
+			- Crear una página web
+			- Implementar una campaña de marketing
+			</texto>
+		</nota>
+	</notas>
+</agenda>

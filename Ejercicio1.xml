@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD -->
+<!DOCTYPE libro [
+<!ELEMENT libro (titulo, autor+, fecha, descripcion?, contenido+)>
+<!ELEMENT autor (nombre, email, idioma)>
+<!ATTLIST autor id ID #REQUIRED>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT idioma #FIXED "español">
+<!ELEMENT fecha (#PCDATA)>
+<!ELEMENT descripcion (#PCDATA)>
+<!ELEMENT contenido ( p | imagen | contacto )*>
+<!ELEMENT p (#PCDATA)>
+<!ELEMENT imagen EMPTY>
+<!ATTLIST imagen src CDATA #REQUIRED>
+<!ELEMENT contacto (nombre, email)>
+<!ATTLIST contacto tipo CDATA #IMPLIED>
+]>
+
+<libro>
+	<titulo>Mi libro</titulo>
+	<autor id="1">
+		<nombre>Juan Pérez</nombre>
+		<email>correo1@gmail.com</email>
+		<idioma>español</idioma>
+	</autor>
+	<autor id="2">
+		<nombre>Ana García</nombre>
+		<email>correo2@gmail.com</email>
+		<idioma>español</idioma>
+	</autor>
+	<fecha>2024-02-20</fecha>
+	<descripcion>Este es un libro sobre...</descripcion>
+	<contenido>
+		<p>Texto del libro...</p>
+		<imagen src="imagen1.jpg"/>
+		<imagen src="imagen2.jpg"/>
+		<contacto tipo="personal">
+			<nombre>María López</nombre>
+			<email>correo3@gmail.com</email>
+		</contacto>
+	</contenido>
+</libro>
